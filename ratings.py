@@ -4,15 +4,15 @@ from mrjob.step import MRStep
 class RatingsBreakdown(MRJob):
     def steps(self):
         return [
-            MRStep(mapper=self.mapper_get_ratings,
-                   reducer=self.reducer_count_ratings)
+            MRStep(mapper=self.mapper_get_user,
+                   reducer=self.reducer_count_user)
         ]
 
-    def mapper_get_ratings(self, _, line):
+    def mapper_get_user(self, _, line):
         (userID, movieID, rating, timestamp) = line.split('\t')
         yield rating, 1
 
-    def reducer_count_ratings(self, key, values):
+    def reducer_count_user(self, key, values):
         yield key, sum(values)
 
 if __name__ == '__main__':
