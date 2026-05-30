@@ -14,7 +14,7 @@ myschema = StructType([\
 
 people = spark.read.format("csv")\
     .schema(myschema)\
-    .option("path","hdfs:///user/maria_dev/spark/friends.csv")\
+    .option("path","hdfs:///user/maria_dev/spark/rawdata.csv")\
     .load()
 
 people.printSchema()
